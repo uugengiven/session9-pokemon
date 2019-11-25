@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Catch a Pokemon</h1>
+
+<button onclick="getPokemon()">Find Pokemon</button><button>Catch Pokemon</button>
+
+<div class="gamecontainer">
+    <div class="trainer">
+        <h2>Trainer Info</h2>
+        <h3>@Model.Name</h3>
+        <h3>@Model.Gym</h3>
+        <h3>Pokemon</h3>
+        <ul>
+            <li>Some Pokemon</li>
+        </ul>
+    </div>
+
+    <div class="pokemon" id="pokemon">
+        <h2>Wild Pokemon</h2>
+        <h3>Name</h3>
+        <h3>Species</h3>
+        <p>Description</p>
+    </div>
+</div>
+
+
+<script>
+    function getPokemon() {
+        // make a request to somewhere
+        // but it's javascript, so a request is:
+        // url - action - where it is going
+        // get is the method by default
+        // also send the code for what to do if it is
+        // successful
+
+        $.ajax(
+            "/game/grass",
+            {
+                success: function (data, statuscode, fullresponse) {
+                    document.getElementById("pokemon").innerHTML += data;
+                }
+            }
+        )
+    }
+</script>
